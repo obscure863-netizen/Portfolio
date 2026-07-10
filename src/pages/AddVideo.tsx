@@ -57,6 +57,7 @@ export default function AddVideo() {
       title: trimmedTitle,
       youtube_url: trimmedUrl,
       thumbnail_url: finalThumbnail,
+      created_at: new Date().toISOString(),
     })
     setSubmitting(false)
 
