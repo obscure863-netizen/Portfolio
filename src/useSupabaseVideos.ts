@@ -33,19 +33,21 @@ export function useSupabaseVideos(): UseVideosResult {
       }
 
       const rows = (data ?? []) as VideoRow[]
-      const mapped: VideoEntry[] = rows
-        .map((row) => {
-          const youtubeId = extractYouTubeId(row.youtube_url)
-          if (!youtubeId) return null
-          return {
-            id: String(row.id),
-            youtubeId,
-            title: row.title,
-            thumbnailUrl: row.thumbnail_url ?? undefined,
-            addedAt: new Date(row.created_at).getTime(),
-          } satisfies VideoEntry
-        })
-        .filter((v): v is VideoEntry => v !== null)
+      const mapped: VideoEntry[] = []
+      for (const row of rows) {
+        const youtubeId = extractYouTubeId(row.youtube_url)
+        if (!youtubeId) continue
+        const entry: VideoEntry = {
+          id: String(row.id),
+          youtubeId,
+          title: row.title,
+          addedAt: new Date(row.created_at).getTime(),
+        }
+        if (row.thumbnail_url) {
+          entry.thumbnailUrl = row.thumbnail_url
+        }
+        mapped.push(entry)
+      }
 
       setVideos(mapped)
       setLoading(false)
