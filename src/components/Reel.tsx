@@ -5,10 +5,11 @@ import { fallbackThumbnailFor, thumbnailFor } from '../lib/youtube'
 
 interface Props {
   videos: VideoEntry[]
+  loading?: boolean
   onPlay: (video: VideoEntry) => void
 }
 
-export default function Reel({ videos, onPlay }: Props) {
+export default function Reel({ videos, loading, onPlay }: Props) {
   return (
     <section id="work" className="relative px-6 sm:px-10 py-28 sm:py-36">
       <div className="flex items-end justify-between mb-14 border-b hairline pb-6">
@@ -18,10 +19,14 @@ export default function Reel({ videos, onPlay }: Props) {
         </span>
       </div>
 
-      {videos.length === 0 ? (
+      {loading ? (
+        <div className="border hairline rounded-2xl py-24 flex flex-col items-center justify-center text-center px-6">
+          <p className="font-serif italic text-2xl text-paper/70">Loading the reel…</p>
+        </div>
+      ) : videos.length === 0 ? (
         <div className="border hairline rounded-2xl py-24 flex flex-col items-center justify-center text-center px-6">
           <p className="font-serif italic text-2xl text-paper/70">
-            The reel is empty.
+            No videos yet.
           </p>
         </div>
       ) : (
@@ -60,7 +65,11 @@ function ReelRow({
 
       <div className="relative w-28 h-16 sm:w-40 sm:h-24 shrink-0 overflow-hidden rounded-md bg-ink border hairline">
         <img
-          src={imgError ? fallbackThumbnailFor(video.youtubeId) : thumbnailFor(video.youtubeId)}
+          src={
+            imgError
+              ? fallbackThumbnailFor(video.youtubeId)
+              : video.thumbnailUrl || thumbnailFor(video.youtubeId)
+          }
           alt={video.title}
           onError={() => setImgError(true)}
           className={`w-full h-full object-cover grayscale transition-transform duration-500 ${

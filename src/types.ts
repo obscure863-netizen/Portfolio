@@ -3,5 +3,6 @@ export interface VideoEntry {
   youtubeId: string
   title: string
   meta?: string
+  thumbnailUrl?: string
   addedAt: number
 }
