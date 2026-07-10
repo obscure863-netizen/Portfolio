@@ -1,4 +1,5 @@
 import { ArrowDown } from 'lucide-react'
+import BlurFadeText from './BlurFadeText'
 
 export default function Hero() {
   return (
@@ -17,10 +18,10 @@ export default function Hero() {
       </p>
 
       <h1
-        className="animate-fade-up font-serif italic leading-[0.9] tracking-tightest text-[19vw] sm:text-[15vw] md:text-[13vw] lg:text-[11rem]"
+        className="animate-fade-up font-display font-bold leading-[0.9] tracking-tight text-[19vw] sm:text-[15vw] md:text-[13vw] lg:text-[11rem]"
         style={{ animationDelay: '100ms' }}
       >
-        Obscure
+        <BlurFadeText text="Obscure" />
       </h1>
 
       <p

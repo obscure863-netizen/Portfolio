@@ -10,6 +10,7 @@ export default {
       },
       fontFamily: {
         serif: ['"JetBrains Mono"', 'monospace'],
+        display: ['"Space Grotesk"', 'sans-serif'],
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       letterSpacing: {
