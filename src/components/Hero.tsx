@@ -1,5 +1,6 @@
 import { ArrowDown } from 'lucide-react'
 import BlurFadeText from './BlurFadeText'
+import MarqueeStrip from './MarqueeStrip'
 
 export default function Hero() {
   return (
@@ -11,6 +12,11 @@ export default function Hero() {
           backgroundImage:
             'radial-gradient(circle at 20% 20%, #0A0A0A 0, transparent 45%), radial-gradient(circle at 80% 75%, #0A0A0A 0, transparent 40%)',
         }}
+      />
+
+      <MarqueeStrip
+        text="Creative Direction — AI Cinematography — Video Editing —"
+        className="absolute top-24 sm:top-28 left-0 right-0"
       />
 
       <p className="animate-fade-up text-xs sm:text-sm tracking-[0.25em] uppercase text-paper/50 mb-6">
@@ -40,6 +46,12 @@ export default function Hero() {
         View the reel
         <ArrowDown size={14} />
       </a>
+
+      <MarqueeStrip
+        text="Lagos, Nigeria — Available for new projects —"
+        className="absolute bottom-10 sm:bottom-12 left-0 right-0"
+        durationSeconds={26}
+      />
     </section>
   )
 }
